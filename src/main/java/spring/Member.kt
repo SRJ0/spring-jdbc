@@ -2,6 +2,8 @@ package spring
 
 class Member(val loginId: String?, val password: String?) {
     private var id = 0
+    var name = "hong"
+    var registerDate = ""
 
     fun setId(id: Int) {
         this.id = id
@@ -12,4 +14,5 @@ class Member(val loginId: String?, val password: String?) {
             throw IdPasswordNotMatchingException("check your account info!")
         }
     }
+
 }
