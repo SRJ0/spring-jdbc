@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--데이터소스를 빈으로 등록-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/spring?characterEncoding=utf8" />
+        <property name="user" value="spring" />
+        <property name="password" value="spring" />
+        <!--커넥션 수와 관련된 c3p0 프로퍼티, 기본값으로 세팅-->
+        <property name="initialPoolSize" value="3"/>
+        <property name="maxPoolSize" value="15"/>
+        <property name="minPoolSize" value="3"/>
+        <!--커넥션 가져올 때 대기시간 초과시 SQLException 발생, ms단위, 0이면 무한 대기-->
+        <property name="checkoutTimeout" value="0"/>
+        <!--커넥션의 테스트 주기, 초단위, 0이면 검사하지 않음-->
+        <property name="idleConnectionTestPeriod" value="0"/>
+    </bean>
+    <bean id="memberDao" class="spring.MemberDao">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+</beans>

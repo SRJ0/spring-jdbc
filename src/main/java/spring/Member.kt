@@ -1,4 +1,4 @@
-package sample
+package spring
 
 class Member(val loginId: String?, val password: String?) {
     private var id = 0
